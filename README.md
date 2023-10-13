@@ -1,4 +1,4 @@
-# similarity-mapping-obda# Mapping Service
+# Mapping Service
 
 ![Java](https://img.shields.io/badge/Java-8%2B-blue.svg)
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3.0%2B-green.svg)
