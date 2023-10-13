@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+<body>
+<div class="container">
+
+    <h1>Mapping Service</h1>
+
+    <div th:if="${error != null}" class="alert alert-danger">
+        <p th:text="${error}"></p>
+    </div>
+
+    <div>
+        <div class="row mt-4">
+            <div class="col-5">
+                <h3 class="text-start">Original mapping</h3>
+                <textarea id="mappingTextArea"rows="20" cols="80" readonly>
+                </textarea>
+            </div>
+            <div class="col-2">
+
+                <form th:action="@{/perform-mapping}" method="post" enctype="multipart/form-data">
+                    <div class="row mt-5">
+                        <button type="button" class="mt-2 btn btn-secondary" data-bs-toggle="modal" data-bs-target="#mappingModal">Load Mapping File (.obda)</button>
+                        <span id="mappingFileStatus">
+                            <span class="text-danger">&#10008; Not Uploaded</span>
+                        </span>
+                        <div class="modal fade" id="mappingModal" tabindex="-1" aria-labelledby="mappingModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="mappingModalLabel">Load Mapping File (.obda)</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-3">
+                                            <input type="file" class="form-control" id="mappingFile" name="mappingFile" required>
+                                            <label class="input-group-text" for="mappingFile">Upload</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="mt-2 btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SimilarityModal">Load Similarity File </button>
+                        <span id="similarityFileStatus"><span class="text-danger">&#10008; Not Uploaded</span></span>
+                        <div class="modal fade" id="SimilarityModal" tabindex="-1" aria-labelledby="SimilarityModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="SimilarityModalLabel">Load Mapping File (.obda)</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-3">
+                                            <input type="file" class="form-control" id="similarityFile" name="similarityFile" required>
+                                            <label class="input-group-text" for="similarityFile">Upload</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-start form-con">
+                            <label for="threshold">Threshold (0.00 - 1.00)</label>
+                            <input type="number" class="form-control" name="threshold" id="threshold"  required step="0.01" min="0" max="1">
+                        </div>
+
+                        <button type="submit" class="mt-4 btn btn-primary" >Perform Mapping</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-5">
+                <h3 class="text-start">Result</h3>
+                <textarea rows="20" cols="80" readonly></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
